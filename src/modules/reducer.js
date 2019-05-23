@@ -7,9 +7,15 @@ const defaultState = {
 
 const todoReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case ACTIONS.Types.CREATE_ITEM: {
-      console.log(action);
+    case ACTIONS.Types.GET_ITEMS_SUCCESS: {
+      console.log('llega acas')
+      let items = action.items;
+      let newState = _.cloneDeep(state);
+      newState.items = items;
+      return newState;
+    }
 
+    case ACTIONS.Types.CREATE_ITEM: {
       let item = action.payload;
       let newItem = { id: state.items.length + 1, description: item };
       let newState = _.cloneDeep(state);

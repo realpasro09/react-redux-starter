@@ -35,17 +35,21 @@ const mapStateToProps = state => ({
   
 const mapDispatchToProps = dispatch => ({
     createItem: item => dispatch(ACTIONS.createItem(item)),
-    deleteItem: id => dispatch(ACTIONS.deleteItem(id))
+    deleteItem: id => dispatch(ACTIONS.deleteItem(id)),
+    getItems: () => dispatch(ACTIONS.getItems())
 });
 
 class SampleComponent extends Component {
-    constructor() {
-        super();
-        this.state = {
-            item: ""
-        };
-    }
+  constructor() {
+      super();
+      this.state = {
+          item: ""
+      };
+  }
   
+  componentDidMount() {
+    this.props.getItems();
+  }
 
   generate = () => {
     return this.props.items.map(item => (
